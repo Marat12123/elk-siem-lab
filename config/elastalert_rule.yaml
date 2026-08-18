@@ -1,0 +1,16 @@
+yaml
+name: SSH Brute Force Alert
+type: frequency
+index: logs-*
+num_events: 5
+timeframe:
+  minutes: 10
+filter:
+- term:
+    program: "sshd"
+- term:
+    syslog_message: "Failed password"
+alert:
+- "email"
+email:
+- "admin@example.com"
